@@ -6,11 +6,16 @@ from taskory.schemas import Task, TaskStatus
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
+import json
+from rich.panel import Panel
+from rich.align import Align
+from taskory.commands.splash import show_splash, maybe_show_splash, load_config, save_config
 
 app = Typer(help="Taskory CLI - Manage your tasks from the command line.")
 
 TASKS_DIR = Path(".taskory")
 TASKS_FILE = TASKS_DIR / "tasks.json"
+CONFIG_FILE = TASKS_DIR / "taskory.config"
 
 console = Console()
 
@@ -133,6 +138,20 @@ def delete(id: str):
     except ValueError as e:
         console.print(str(e), style="bold red")
         raise SystemExit(1)
+
+# --- About command ---
+@app.command()
+def about():
+    """Show info about Taskory and the splash screen."""
+    show_splash(console)
+    console.print("[bold]Taskory[/bold] - AI-powered CLI task manager\n", style="cyan")
+    console.print("[bold]Version:[/bold] 0.1.0")
+    console.print("[bold]Author:[/bold] Jeff Richley & Iris")
+    console.print("[bold]Repo:[/bold] https://github.com/your-org/taskory\n")
+    console.print("[dim]Built with Pydantic and LangChain.[/dim]")
+
+# --- Call splash logic at CLI startup ---
+maybe_show_splash(console, CONFIG_FILE)
 
 if __name__ == "__main__":
     app() 
