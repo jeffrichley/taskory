@@ -87,5 +87,15 @@
       "test",
       "store"
     ]
+  },
+  {
+    "id": "bd175931-5a68-4ef4-a0ef-4308de712150",
+    "title": "my new task",
+    "status": "in_progress",
+    "created_at": "2025-06-10T02:04:50.664912+00:00",
+    "updated_at": "2025-06-10T02:04:50.664912+00:00",
+    "priority": null,
+    "assignee": null,
+    "tags": null
   }
 ]

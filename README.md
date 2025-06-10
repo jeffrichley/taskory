@@ -13,4 +13,29 @@ This project is organized as follows:
 - `planning.json`, `tasks.json`, `ideas.json`, `taskory.config.json` - Project data and configuration files (root).
 - `tests/` - Unit tests, mirroring the main app structure.
 
-See the PRD.md for more details on architecture and features. 
+See the PRD.md for more details on architecture and features.
+
+## 🖥 Taskory CLI Usage
+
+Taskory provides a command-line interface (CLI) for managing your tasks. The CLI uses [Typer](https://typer.tiangolo.com/) and loads tasks from `tasks.json` in the project root.
+
+### Basic Commands
+
+- **Create a new task:**
+  ```sh
+  python -m taskory.cli new "My new task"
+  ```
+
+- **List all tasks:**
+  ```sh
+  python -m taskory.cli list
+  ```
+
+- **List tasks by status:**
+  ```sh
+  python -m taskory.cli list --status done
+  ```
+
+### Notes
+- All changes are saved to `tasks.json` automatically.
+- More commands (update, delete, etc.) coming soon. 

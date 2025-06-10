@@ -27,7 +27,7 @@ Thumbs.db
 Desktop.ini
 
 # Taskory generated data
-.taskory/
+# .taskory/
 
 # Test and coverage outputs
 htmlcov/
