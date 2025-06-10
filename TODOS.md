@@ -45,9 +45,9 @@ This file is temporary and will be deleted once Taskory can manage its own tasks
 
 ## 🖥 Build CLI for Managing Tasks
 
-- [ ] Set up CLI using `argparse` or `typer`
-- [ ] Add `taskory new "Task title"` to create a task
-- [ ] Add `taskory list` to list all tasks
+- [x] Set up CLI using `argparse` or `typer`
+- [x] Add `taskory new "Task title"` to create a task
+- [x] Add `taskory list` to list all tasks
 - [ ] Add `taskory list --status done` (filter by status)
 - [ ] Add `taskory update <id> --status in_progress`
 - [ ] Add `taskory delete <id>`
