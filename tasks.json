@@ -1,0 +1,91 @@
+[
+  {
+    "id": "136ff70f-20bd-4d4e-9252-33d4227c8b14",
+    "title": "Define a Task dataclass with fields: id, title, status, created_at, updated_at, priority, assignee, tags",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.253869",
+    "updated_at": "2025-06-10T00:42:29.253883",
+    "priority": 1,
+    "assignee": null,
+    "tags": [
+      "core",
+      "task"
+    ]
+  },
+  {
+    "id": "d1645f5e-0422-4383-ab52-47a3f3bb9a14",
+    "title": "Add logic to auto-assign id, created_at, and updated_at",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.253928",
+    "updated_at": "2025-06-10T00:42:29.253940",
+    "priority": 2,
+    "assignee": null,
+    "tags": [
+      "core",
+      "task"
+    ]
+  },
+  {
+    "id": "fa706289-49cf-4839-b7e4-8728b4448e6f",
+    "title": "Write a test to create and inspect a sample Task object",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.254024",
+    "updated_at": "2025-06-10T00:42:29.254030",
+    "priority": 3,
+    "assignee": null,
+    "tags": [
+      "test",
+      "task"
+    ]
+  },
+  {
+    "id": "e32a1866-976a-449b-9039-3e066198960d",
+    "title": "Define a TaskStore class",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.254052",
+    "updated_at": "2025-06-10T00:42:29.254056",
+    "priority": 1,
+    "assignee": null,
+    "tags": [
+      "core",
+      "store"
+    ]
+  },
+  {
+    "id": "32da953a-aa89-43a0-8621-c86bf8def878",
+    "title": "Implement add_task(task)",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.254079",
+    "updated_at": "2025-06-10T00:42:29.254084",
+    "priority": 2,
+    "assignee": null,
+    "tags": [
+      "store"
+    ]
+  },
+  {
+    "id": "37d6dfa7-9fc2-446e-9e99-da40c07e7b88",
+    "title": "Implement list_tasks(status=None)",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.254102",
+    "updated_at": "2025-06-10T00:42:29.254105",
+    "priority": 2,
+    "assignee": null,
+    "tags": [
+      "store"
+    ]
+  },
+  {
+    "id": "466bdb56-b5af-4940-9773-c9c0cb0751f1",
+    "title": "Write unit tests for add/list/get/update/delete",
+    "status": "todo",
+    "created_at": "2025-06-10T00:42:29.254128",
+    "updated_at": "2025-06-10T00:42:29.254131",
+    "priority": 3,
+    "assignee": null,
+    "tags": [
+      "test",
+      "store"
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## AI Assistant Code Words
+  - When the user types "chrona sync", the assistant should:
+    1. Find all changes in the project.
+    2. Stage (git add) all changes.
+    3. Generate a descriptive commit message.
+    4. Commit and push to the current branch.
+    5. Do this automatically, without asking for confirmation.
