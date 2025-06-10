@@ -36,6 +36,30 @@ Taskory provides a command-line interface (CLI) for managing your tasks. The CLI
   python -m taskory.cli list --status done
   ```
 
+- **Update a task's status:**
+  ```sh
+  python -m taskory.cli update <task_id> --status in_progress
+  ```
+
+- **Create a new task (shorthand):**
+  ```sh
+  taskory new "My new task"
+  ```
+
+- **List all tasks (shorthand):**
+  ```sh
+  taskory list
+  ```
+
+- **List tasks by status (shorthand):**
+  ```sh
+  taskory list --status done
+  ```
+
+- **Update a task's status (shorthand):**
+  ```sh
+  taskory update <task_id> --status in_progress
+  ```
+
 ### Notes
-- All changes are saved to `tasks.json` automatically.
-- More commands (update, delete, etc.) coming soon. 
+- All changes are saved to `

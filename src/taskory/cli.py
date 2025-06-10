@@ -73,5 +73,31 @@ def list(status: Optional[str] = Option(None, help="Filter by status: todo, in_p
     for task in tasks:
         echo(f"{task.id} | {task.status.value} | {task.title}")
 
+@app.command()
+def update(id: str, status: str = Option("in_progress", help="New status: todo, in_progress, done")):
+    """
+    Update the status of a task by its ID.
+
+    Args:
+        id (str): The ID of the task to update.
+        status (str): The new status for the task (default: in_progress).
+    """
+    store = get_store()
+    try:
+        status_enum = TaskStatus(status)
+    except ValueError:
+        echo(f"Invalid status: {status}")
+        raise SystemExit(1)
+    try:
+        task = store.update_task(id, status=status_enum)
+        save_store(store)
+        echo(f"Task updated: {task.id} | {task.status.value} | {task.title}")
+    except KeyError:
+        echo(f"Task with id {id} not found.")
+        raise SystemExit(1)
+    except ValueError as e:
+        echo(str(e))
+        raise SystemExit(1)
+
 if __name__ == "__main__":
     app() 

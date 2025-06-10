@@ -13,3 +13,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 taskory = "taskory.cli:app" 
+t = "taskory.cli:app" 
