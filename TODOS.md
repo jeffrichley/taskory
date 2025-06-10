@@ -22,13 +22,13 @@ This file is temporary and will be deleted once Taskory can manage its own tasks
 
 ## 🗃 Create TaskStore for Managing Tasks in Memory
 
-- [ ] Define a `TaskStore` class
-- [ ] Implement `add_task(task)`
-- [ ] Implement `list_tasks(status=None)`
-- [ ] Implement `get_task_by_id(id)`
-- [ ] Implement `update_task(id, **kwargs)`
-- [ ] Implement `delete_task(id)`
-- [ ] Write unit tests for add/list/get/update/delete
+- [x] Define a `TaskStore` class
+- [x] Implement `add_task(task)`
+- [x] Implement `list_tasks(status=None)`
+- [x] Implement `get_task_by_id(id)`
+- [x] Implement `update_task(id, **kwargs)`
+- [x] Implement `delete_task(id)`
+- [x] Write unit tests for add/list/get/update/delete
 
 ---
 
