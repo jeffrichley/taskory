@@ -3,11 +3,16 @@ from pathlib import Path
 from typing import Optional
 from taskory.commands.task_store import TaskStore
 from taskory.schemas import Task, TaskStatus
+from rich.console import Console
+from rich.table import Table
+from rich.text import Text
 
 app = Typer(help="Taskory CLI - Manage your tasks from the command line.")
 
 TASKS_DIR = Path(".taskory")
 TASKS_FILE = TASKS_DIR / "tasks.json"
+
+console = Console()
 
 # Ensure the .taskory directory exists before any file operations
 def ensure_tasks_dir():
@@ -47,7 +52,7 @@ def new(title: str):
     task = Task(title=title)
     store.add_task(task)
     save_store(store)
-    echo(f"Task created: {task.id} - {task.title}")
+    console.print(f"Task created: {task.id} - {task.title}", style="bold green")
 
 @app.command()
 def list(status: Optional[str] = Option(None, help="Filter by status: todo, in_progress, done")):
@@ -62,16 +67,26 @@ def list(status: Optional[str] = Option(None, help="Filter by status: todo, in_p
         try:
             status_enum = TaskStatus(status)
         except ValueError:
-            echo(f"Invalid status: {status}")
+            console.print(f"Invalid status: {status}", style="bold red")
             raise SystemExit(1)
         tasks = store.list_tasks(status=status_enum)
     else:
         tasks = store.list_tasks()
     if not tasks:
-        echo("No tasks found.")
+        console.print("No tasks found.", style="yellow")
         return
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("ID", style="dim", overflow="fold")
+    table.add_column("Status")
+    table.add_column("Title")
     for task in tasks:
-        echo(f"{task.id} | {task.status.value} | {task.title}")
+        status_color = {
+            "todo": "yellow",
+            "in_progress": "cyan",
+            "done": "green"
+        }.get(task.status.value, "white")
+        table.add_row(str(task.id), Text(task.status.value, style=status_color), task.title)
+    console.print(table)
 
 @app.command()
 def update(id: str, status: str = Option("in_progress", help="New status: todo, in_progress, done")):
@@ -86,17 +101,17 @@ def update(id: str, status: str = Option("in_progress", help="New status: todo, 
     try:
         status_enum = TaskStatus(status)
     except ValueError:
-        echo(f"Invalid status: {status}")
+        console.print(f"Invalid status: {status}", style="bold red")
         raise SystemExit(1)
     try:
         task = store.update_task(id, status=status_enum)
         save_store(store)
-        echo(f"Task updated: {task.id} | {task.status.value} | {task.title}")
+        console.print(f"Task updated: {task.id} | {task.status.value} | {task.title}", style="bold green")
     except KeyError:
-        echo(f"Task with id {id} not found.")
+        console.print(f"Task with id {id} not found.", style="bold red")
         raise SystemExit(1)
     except ValueError as e:
-        echo(str(e))
+        console.print(str(e), style="bold red")
         raise SystemExit(1)
 
 @app.command()
@@ -111,12 +126,12 @@ def delete(id: str):
     try:
         store.delete_task(id)
         save_store(store)
-        echo(f"Task deleted: {id}")
+        console.print(f"Task deleted: {id}", style="bold green")
     except KeyError:
-        echo(f"Task with id {id} not found.")
+        console.print(f"Task with id {id} not found.", style="bold red")
         raise SystemExit(1)
     except ValueError as e:
-        echo(str(e))
+        console.print(str(e), style="bold red")
         raise SystemExit(1)
 
 if __name__ == "__main__":

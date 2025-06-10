@@ -53,7 +53,9 @@ This file is temporary and will be deleted once Taskory can manage its own tasks
 - [x] Add `taskory delete <id>`
 - [x] Add helpful error messages for bad input or missing IDs
 - [x] Connect CLI commands to `TaskStore` logic
-- [ ] Make the CLI output look fancy
+- [x] Make the CLI output look fancy
+- [ ] Add a splash screen that only shows on first command run for taskory
+- [ ] Add an about CLI option that tells about the project and shows the spash screen each time
 
 ---
 
