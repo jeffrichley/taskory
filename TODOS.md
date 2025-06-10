@@ -34,12 +34,12 @@ This file is temporary and will be deleted once Taskory can manage its own tasks
 
 ## 💾 Add Persistent JSON File Storage
 
-- [ ] Decide on storage format (`tasks.json`)
-- [ ] Implement `save_to_file(path)` in `TaskStore`
-- [ ] Implement `load_from_file(path)` in `TaskStore`
-- [ ] Handle serialization/deserialization of `datetime` and `Enum`
-- [ ] Add automatic saving after task changes
-- [ ] Write a test for save → load round-trip
+- [x] Decide on storage format (`tasks.json`)
+- [x] Implement `save_to_file(path)` in `TaskStore`
+- [x] Implement `load_from_file(path)` in `TaskStore`
+- [x] Handle serialization/deserialization of `datetime` and `Enum`
+- [x] Add automatic saving after task changes
+- [x] Write a test for save → load round-trip
 
 ---
 

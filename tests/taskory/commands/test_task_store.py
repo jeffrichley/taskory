@@ -1,12 +1,8 @@
-import sys
-import os
 import pytest
 from uuid import uuid4
 from datetime import datetime, timedelta, UTC
 import time
-
-# Add /src to sys.path for imports
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../src')))
+import tempfile
 
 from taskory.commands.task_store import TaskStore
 from taskory.schemas import Task, TaskStatus, TaskPriority
@@ -129,4 +125,41 @@ def test_invalid_uuid_string_raises_value_error(sample_task):
     with pytest.raises(ValueError):
         store.update_task(bad_id, title="fail")
     with pytest.raises(ValueError):
-        store.delete_task(bad_id) 
+        store.delete_task(bad_id)
+
+def test_save_and_load_round_trip(sample_task):
+    store = TaskStore()
+    store.add_task(sample_task)
+    # Add a second task with different fields
+    another_task = Task(
+        title="Another Task",
+        status=TaskStatus.done,
+        priority=TaskPriority.high,
+        assignee=None,
+        tags=["edge", "case"]
+    )
+    store.add_task(another_task)
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as tmp:
+        path = tmp.name
+    try:
+        store.save_to_file(path)
+        loaded_store = TaskStore.load_from_file(path)
+        # Check both tasks are present and fields match
+        loaded1 = loaded_store.get_task_by_id(sample_task.id)
+        loaded2 = loaded_store.get_task_by_id(another_task.id)
+        assert loaded1.title == sample_task.title
+        assert loaded1.status == sample_task.status
+        assert loaded1.priority == sample_task.priority
+        assert loaded1.assignee == sample_task.assignee
+        assert loaded1.tags == sample_task.tags
+        assert loaded2.title == another_task.title
+        assert loaded2.status == another_task.status
+        assert loaded2.priority == another_task.priority
+        assert loaded2.assignee == another_task.assignee
+        assert loaded2.tags == another_task.tags
+        # Check datetimes are close (allowing for serialization granularity)
+        assert abs((loaded1.created_at - sample_task.created_at).total_seconds()) < 1
+        assert abs((loaded2.created_at - another_task.created_at).total_seconds()) < 1
+    finally:
+        import os
+        os.remove(path) 
