@@ -99,5 +99,25 @@ def update(id: str, status: str = Option("in_progress", help="New status: todo, 
         echo(str(e))
         raise SystemExit(1)
 
+@app.command()
+def delete(id: str):
+    """
+    Delete a task by its ID.
+
+    Args:
+        id (str): The ID of the task to delete.
+    """
+    store = get_store()
+    try:
+        store.delete_task(id)
+        save_store(store)
+        echo(f"Task deleted: {id}")
+    except KeyError:
+        echo(f"Task with id {id} not found.")
+        raise SystemExit(1)
+    except ValueError as e:
+        echo(str(e))
+        raise SystemExit(1)
+
 if __name__ == "__main__":
     app() 

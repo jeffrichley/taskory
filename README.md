@@ -61,5 +61,15 @@ Taskory provides a command-line interface (CLI) for managing your tasks. The CLI
   taskory update <task_id> --status in_progress
   ```
 
+- **Delete a task:**
+  ```sh
+  python -m taskory.cli delete <task_id>
+  ```
+
+- **Delete a task (shorthand):**
+  ```sh
+  taskory delete <task_id>
+  ```
+
 ### Notes
 - All changes are saved to `

@@ -49,10 +49,11 @@ This file is temporary and will be deleted once Taskory can manage its own tasks
 - [x] Add `taskory new "Task title"` to create a task
 - [x] Add `taskory list` to list all tasks
 - [x] Add `taskory list --status done` (filter by status)
-- [ ] Add `taskory update <id> --status in_progress`
-- [ ] Add `taskory delete <id>`
-- [ ] Add helpful error messages for bad input or missing IDs
-- [ ] Connect CLI commands to `TaskStore` logic
+- [x] Add `taskory update <id> --status in_progress`
+- [x] Add `taskory delete <id>`
+- [x] Add helpful error messages for bad input or missing IDs
+- [x] Connect CLI commands to `TaskStore` logic
+- [ ] Make the CLI output look fancy
 
 ---
 
